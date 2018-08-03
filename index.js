@@ -7,12 +7,24 @@ function reverse(string) {
 }
 function Phrase(content) { 
 	this.content = content;
+
 	this.processor = function(string){
 		return string.toLowerCase();
 	}
 	this.processedContent = function () {
-		return this.processor(this.content);
+		//return this.processor(this.content);
+		return this.letters().toLowerCase();
+
 	};
+	this.letters = function letters() {
+		let theLetters = [];
+		for (let i = 0; i < this.content.length; i++) {
+			if (this.content.charAt(i).match(/[a-zA-Z]/)) {
+				theLetters.push(this.content.charAt(i));
+			}
+		}
+		return theLetters.join("");
+	}
 	this.palindrome = function palindrome() {
 		return this.processedContent() === reverse(this.processedContent());
 	}
